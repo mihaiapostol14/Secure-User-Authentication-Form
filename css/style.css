@@ -1,0 +1,226 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+  --white: #fff;
+  --icon-color: #545454;
+  --background-start: #b8e5e2;
+  --background-end: #dee6d7;
+  --letter-box-background: #00264d;
+  --title-color: #a8a9b1;
+  --input-background: #cccccc;
+  --remember-text-color: #d2c4c4;
+  --button-background: #00264d;
+  --error-color: #e74c3c;
+  --success-color: #32d190;
+  --forgot-password-color: #777b83;
+
+  /* Eye / Tooltip Colors */
+  --color-white: #fff;
+  --color-accent: #00264d;
+  --color-accent-hover: #545454;
+  --color-tooltip-bg: #00264d;
+  --color-tooltip-shadow: rgba(0, 0, 0, 0.25);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 200;
+  font-style: normal;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(
+    var(--background-start),
+    var(--background-end)
+  );
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  padding: 40px;
+  background: var(--white);
+}
+
+.container .form {
+  width: 100%;
+  max-width: 400px;
+  padding: 50px;
+  /* background: var(--primary-color); */
+}
+
+.container .letter-box {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 4%;
+  height: 100%;
+  list-style: none;
+  background-color: var(--letter-box-background);
+}
+
+.letter-box .letter {
+  font-size: 5rem;
+  font-weight: 100;
+  color: var(--white);
+  background: none;
+}
+
+.form .title {
+  text-align: center;
+  font-weight: 300;
+  margin-bottom: 30px;
+  color: var(--title-color);
+  font-size: 40px;
+}
+
+.form .input-box {
+  position: relative;
+  margin-bottom: 10%;
+  color: var(--icon-color);
+}
+
+.form .input-box .user,
+.lock {
+  position: absolute;
+  left: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+
+/* Eye Icon Container Positioning */
+.input-box .eye-tooltip {
+  position: absolute;
+  right: 0;
+  bottom: 20px;
+  width: 45px;
+  height: 44px; /* Matches input height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  --tooltip-arrow-size: 5px;
+}
+
+/* Eye Icon Styling */
+.input-box .eye {
+  position: absolute;
+  right: 10px;
+  top: 100%;
+  transform: translateY(-50%);
+  color: var(--color-accent-hover);
+  cursor: pointer;
+  transition:
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.input-box .eye:hover {
+  color: var(--color-accent);
+  transform: translateY(-50%) scale(1.1);
+}
+
+/* Eye Tooltip Styling */
+.input-box .eye-tooltip:hover::before {
+  content: attr(data-eye-title);
+  position: absolute;
+  right: 5px;
+  bottom: 50%;
+  transform: translateY(-8px);
+  width: max-content;
+  padding: 6px 10px;
+  pointer-events: none;
+  color: var(--color-white);
+  background: var(--color-tooltip-bg);
+  border-radius: 5px;
+  font-size: 12px;
+  text-transform: capitalize;
+  white-space: nowrap;
+  opacity: 1;
+  visibility: visible;
+  box-shadow: 0 3px 10px var(--color-tooltip-shadow);
+}
+
+.input-box .eye-tooltip:hover::after {
+  content: '';
+  position: absolute;
+  right: 18px;
+  bottom: calc(100% - 20px);
+  border-left: var(--tooltip-arrow-size) solid transparent;
+  border-right: var(--tooltip-arrow-size) solid transparent;
+  border-top: var(--tooltip-arrow-size) solid var(--color-tooltip-bg);
+  opacity: 1;
+  visibility: visible;
+}
+
+.form .input-box input {
+  width: 100%;
+  padding: 2%;
+  border: 0;
+  outline: 0;
+  padding-left: 25px;
+  font-size: 16px;
+  background: var(--input-background);
+}
+
+
+.form .input-box input:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 2px rgba(240, 190, 21, 0.12);
+}
+
+
+.form .input-box input::placeholder {
+  text-transform: capitalize;
+}
+
+.remember-me {
+  position: relative;
+  margin-bottom: 5%;
+}
+
+.remember-me input {
+  accent-color: var(--icon-color);
+}
+
+.forgot-password-link {
+  position: absolute;
+  right: 0;
+  text-decoration: none;
+}
+
+.remember-me,
+.forgot-password-link {
+  color: var(--forgot-password-color);
+}
+
+.form .btn-box .btn {
+  width: 100%;
+  padding: 5%;
+  font-weight: 500;
+  text-transform: uppercase;
+  border: none;
+  outline: none;
+  color: var(--white);
+  font-size: 16px;
+  background: var(--button-background);
+  cursor: pointer;
+}
+
+/* Validation states */
+.username.error {
+  border-color: var(--error-color);
+}
+
+.password.success {
+  border-color: var(--success-color);
+}
